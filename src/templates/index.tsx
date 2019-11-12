@@ -131,7 +131,7 @@ const IndexPage: React.FC<IndexProps> = props => {
       <Wrapper>
         <header
           css={[outer, SiteHeader]}
-          style={{ background: '#0e1e24' }}
+          style={{ background: 'linear-gradient(0deg, rgba(14,30,36,1) 0%, rgba(20,49,60,1) 100%)' }}
           // style={{
           //   backgroundImage: `url('${props.data.header.childImageSharp.fluid.src}')`,
           // }}
