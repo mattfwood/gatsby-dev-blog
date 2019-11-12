@@ -1,3 +1,11 @@
-- id: speeches
-  description: Some of the greatest words ever spoken.
-  image: img/speeches-cover.jpg
+# - id: speeches
+#   description: Some of the greatest words ever spoken.
+#   image: img/speeches-cover.jpg
+
+- id: react
+  description: React Library
+  # image: img/speeches-cover.jpg
+
+- id: programming
+
+- id: design

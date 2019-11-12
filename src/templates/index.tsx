@@ -91,6 +91,7 @@ export interface IndexProps {
 }
 
 const IndexPage: React.FC<IndexProps> = props => {
+  console.log(props);
   const width = props.data.header.childImageSharp.fluid.sizes.split(', ')[1].split('px')[0];
   const height = String(Number(width) / props.data.header.childImageSharp.fluid.aspectRatio);
 
@@ -196,6 +197,17 @@ export const pageQuery = graphql`
         # Makes it trivial to update as your page's design changes.
         fluid(maxWidth: 2000) {
           ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    allSitePage {
+      edges {
+        node {
+          id
+          path
+          context {
+            tag
+          }
         }
       }
     }

@@ -2,7 +2,7 @@
 import { Link } from 'gatsby';
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
+import { useStaticQuery, graphql } from 'gatsby';
 
 import { SocialLink } from '../../styles/shared';
 import config from '../../website-config';
@@ -10,24 +10,9 @@ import Facebook from '../icons/facebook';
 import Twitter from '../icons/twitter';
 import SubscribeModal from '../subscribe/SubscribeOverlay';
 import SiteNavLogo from './SiteNavLogo';
+import { HomeNavRaise, SiteNavStyles, NavStyles } from './SharedStyles';
 
-const HomeNavRaise = css`
-  @media (min-width: 900px) {
-    position: relative;
-    top: -70px;
-  }
-`;
-
-const SiteNavStyles = css`
-  position: relative;
-  z-index: 300;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  overflow-y: hidden;
-  height: 40px;
-  font-size: 1.2rem;
-`;
+const { useRef } = React;
 
 const SiteNavLeft = styled.div`
   display: flex;
@@ -45,33 +30,6 @@ const SiteNavLeft = styled.div`
   @media (max-width: 700px) {
     margin-right: 0;
     padding-left: 4vw;
-  }
-`;
-
-const NavStyles = css`
-  display: flex;
-  margin: 0 0 0 -12px;
-  padding: 0;
-  list-style: none;
-
-  li {
-    display: block;
-    margin: 0;
-    padding: 0;
-    text-transform: uppercase;
-  }
-
-  li a {
-    display: block;
-    margin: 0;
-    padding: 10px 12px;
-    color: #fff;
-    opacity: 0.8;
-  }
-
-  li a:hover {
-    text-decoration: none;
-    opacity: 1;
   }
 `;
 
@@ -114,69 +72,160 @@ const SubscribeButton = styled.a`
 
 interface SiteNavProps {
   isHome?: boolean;
+  pages?: any;
 }
 
-class SiteNav extends React.Component<SiteNavProps> {
-  subscribe = React.createRef<SubscribeModal>();
-
-  openModal = () => {
-    if (this.subscribe.current) {
-      this.subscribe.current.open();
+const TAG_QUERY = graphql`
+  query TAG_QUERY {
+    allTagYaml {
+      edges {
+        node {
+          id
+        }
+      }
     }
-  };
-
-  render() {
-    const { isHome = false } = this.props;
-    return (
-      <nav css={[isHome && HomeNavRaise, SiteNavStyles]}>
-        <SiteNavLeft>
-          {!isHome && <SiteNavLogo />}
-          <ul css={NavStyles} role="menu">
-            {/* TODO: mark current nav item - add class nav-current */}
-            <li role="menuitem">
-              <Link to="/">Home</Link>
-            </li>
-            <li role="menuitem">
-              <Link to="/about">About</Link>
-            </li>
-            <li role="menuitem">
-              <Link to="/tags/getting-started/">Getting Started</Link>
-            </li>
-          </ul>
-        </SiteNavLeft>
-        <SiteNavRight>
-          <SocialLinks>
-            {config.facebook && (
-              <a
-                css={SocialLink}
-                href={config.facebook}
-                target="_blank"
-                title="Facebook"
-                rel="noopener noreferrer"
-              >
-                <Facebook />
-              </a>
-            )}
-            {config.twitter && (
-              <a
-                css={SocialLink}
-                href={config.twitter}
-                title="Twitter"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Twitter />
-              </a>
-            )}
-          </SocialLinks>
-          {config.showSubscribe && (
-            <SubscribeButton onClick={this.openModal}>Subscribe</SubscribeButton>
-          )}
-          {config.showSubscribe && <SubscribeModal ref={this.subscribe} />}
-        </SiteNavRight>
-      </nav>
-    );
   }
+`;
+
+function SiteNav(props: SiteNavProps) {
+  const { isHome = false } = props;
+  const data = useStaticQuery(TAG_QUERY);
+
+  console.log({ data });
+
+  const tags = data.allTagYaml.edges.map((edge: any) => edge.node.id);
+  console.log({ tags });
+
+  const subscribeRef = useRef(null);
+
+  function openModal() {
+    if (subscribeRef && subscribeRef !== null) {
+      subscribeRef.current.open();
+    }
+  }
+
+  return (
+    <nav css={[isHome && HomeNavRaise, SiteNavStyles]}>
+      <SiteNavLeft>
+        {!isHome && <SiteNavLogo />}
+        <ul css={NavStyles} role="menu">
+          {/* TODO: mark current nav item - add class nav-current */}
+          <li role="menuitem">
+            <Link to="/">Home</Link>
+          </li>
+          <li role="menuitem">
+            <Link to="/about">About</Link>
+          </li>
+          {tags.map((tag: string) => (
+            <li key={tag} role="menuitem">
+              <Link to={`/tags/${tag.toLowerCase()}`}>{tag}</Link>
+            </li>
+          ))}
+        </ul>
+      </SiteNavLeft>
+      <SiteNavRight>
+        <SocialLinks>
+          {config.facebook && (
+            <a
+              css={SocialLink}
+              href={config.facebook}
+              target="_blank"
+              title="Facebook"
+              rel="noopener noreferrer"
+            >
+              <Facebook />
+            </a>
+          )}
+          {config.twitter && (
+            <a
+              css={SocialLink}
+              href={config.twitter}
+              title="Twitter"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Twitter />
+            </a>
+          )}
+        </SocialLinks>
+        {config.showSubscribe && (
+          <SubscribeButton onClick={openModal}>Subscribe</SubscribeButton>
+        )}
+        {config.showSubscribe && <SubscribeModal ref={subscribeRef} />}
+      </SiteNavRight>
+    </nav>
+  );
 }
+
+// class SiteNav extends React.Component<SiteNavProps> {
+//   subscribe = React.createRef<SubscribeModal>();
+
+//   openModal = () => {
+//     if (this.subscribe.current) {
+//       this.subscribe.current.open();
+//     }
+//   };
+
+//   render() {
+//     console.log(this.props);
+//     const { isHome = false, pages = [] } = this.props;
+
+//     const allTags = pages.filter((page: any) => page.node.path.startsWith('/tags/')).map((page: any) => ({
+//       path: page.node.path,
+//       name: page.node.context.tag,
+//     }));
+//     return (
+//       <nav css={[isHome && HomeNavRaise, SiteNavStyles]}>
+//         <SiteNavLeft>
+//           {!isHome && <SiteNavLogo />}
+//           <ul css={NavStyles} role="menu">
+//             {/* TODO: mark current nav item - add class nav-current */}
+//             <li role="menuitem">
+//               <Link to="/">Home</Link>
+//             </li>
+//             <li role="menuitem">
+//               <Link to="/about">About</Link>
+//             </li>
+//             {allTags.map((tag: any) => (
+//               <li key={tag.id} role="menuitem">
+//                 <Link to={tag.path}>{tag.name}</Link>
+//               </li>
+//             ))}
+//           </ul>
+//         </SiteNavLeft>
+//         <SiteNavRight>
+//           <SocialLinks>
+//             {config.facebook && (
+//               <a
+//                 css={SocialLink}
+//                 href={config.facebook}
+//                 target="_blank"
+//                 title="Facebook"
+//                 rel="noopener noreferrer"
+//               >
+//                 <Facebook />
+//               </a>
+//             )}
+//             {config.twitter && (
+//               <a
+//                 css={SocialLink}
+//                 href={config.twitter}
+//                 title="Twitter"
+//                 target="_blank"
+//                 rel="noopener noreferrer"
+//               >
+//                 <Twitter />
+//               </a>
+//             )}
+//           </SocialLinks>
+//           {config.showSubscribe && (
+//             <SubscribeButton onClick={this.openModal}>Subscribe</SubscribeButton>
+//           )}
+//           {config.showSubscribe && <SubscribeModal ref={this.subscribe} />}
+//         </SiteNavRight>
+//       </nav>
+//     );
+//   }
+// }
 
 export default SiteNav;
