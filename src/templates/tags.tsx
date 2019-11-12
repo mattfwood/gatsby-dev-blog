@@ -34,11 +34,11 @@ interface TagTemplateProps {
         node: {
           id: string;
           description: string;
-          image?: {
-            childImageSharp: {
-              fluid: any;
-            };
-          };
+          // image?: {
+          //   childImageSharp: {
+          //     fluid: any;
+          //   };
+          // };
         };
       }>;
     };
@@ -52,6 +52,7 @@ interface TagTemplateProps {
 }
 
 const Tags: React.FC<TagTemplateProps> = props => {
+  console.log({ props });
   const tag = (props.pageContext.tag) ? props.pageContext.tag : '';
   const { edges, totalCount } = props.data.allMarkdownRemark;
   const tagData = props.data.allTagYaml.edges.find(
@@ -88,12 +89,13 @@ const Tags: React.FC<TagTemplateProps> = props => {
         <header
           className={`${tagData && tagData.node.image ? '' : 'no-cover'}`}
           css={[outer, SiteHeader]}
-          style={{
-            backgroundImage:
-              tagData && tagData.node.image ?
-                `url('${tagData.node.image.childImageSharp.fluid.src}')` :
-                '',
-          }}
+          // style={{
+          //   backgroundImage:
+          //     tagData && tagData.node.image ?
+          //       `url('${tagData.node.image.childImageSharp.fluid.src}')` :
+          //       '',
+          // }}
+          style={{ background: 'linear-gradient(0deg, rgba(14,30,36,1) 0%, rgba(20,49,60,1) 100%)' }}
         >
           <div css={inner}>
             <SiteNav isHome={false} />
@@ -137,13 +139,13 @@ export const pageQuery = graphql`
         node {
           id
           description
-          image {
-            childImageSharp {
-              fluid(maxWidth: 3720) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
+          # image {
+          #   childImageSharp {
+          #     fluid(maxWidth: 3720) {
+          #       ...GatsbyImageSharpFluid
+          #     }
+          #   }
+          # }
         }
       }
     }

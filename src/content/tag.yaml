@@ -4,8 +4,12 @@
 
 - id: react
   description: React Library
-  # image: img/speeches-cover.jpg
+  image:
 
 - id: programming
+  description: General Programming
+  image: img/computer.jpg
 
 - id: design
+  description: Design from a Development Perspective
+  image: img/computer.jpg
