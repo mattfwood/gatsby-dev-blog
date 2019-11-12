@@ -183,7 +183,7 @@ export interface PageContext {
     slug: string;
   };
   frontmatter: {
-    image: {
+    image?: {
       childImageSharp: {
         fluid: any;
       };

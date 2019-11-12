@@ -3,7 +3,6 @@ layout: post
 title: Practical Examples for React Context
 date: 2018-10-16T01:00:00.000Z
 spoiler: Real-world examples, with Context
-image: img/testimg-cover.jpg
 draft: false
 tags:
   - React

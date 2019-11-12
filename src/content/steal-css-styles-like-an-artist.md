@@ -3,7 +3,6 @@ layout: post
 title: Steal (CSS Styles) Like An Artist
 date: 2018-10-08T01:00:00.000Z
 spoiler: Taking Notes From Sites That Know Better
-image: img/testimg-cover.jpg
 draft: false
 tags:
   - Design

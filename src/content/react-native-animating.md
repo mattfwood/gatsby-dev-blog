@@ -3,7 +3,6 @@ layout: post
 title: React Native Animations Through Example
 date: 2019-01-30T01:00:00.000Z
 spoiler: Learning Mobile Animations By Imitation
-image: img/testimg-cover.jpg
 draft: false
 tags:
   - React
