@@ -10,12 +10,13 @@ import { colors } from '../styles/colors';
 import { PageContext } from '../templates/post';
 
 const PostCardStyles = css`
-  flex: 1 1 300px;
+  /* flex: 1 1; */
+  flex: 100%;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   margin: 0 20px 40px;
-  min-height: 300px;
+  min-height: 200px;
   background: #fff center center;
   background-size: cover;
   border-radius: 5px;

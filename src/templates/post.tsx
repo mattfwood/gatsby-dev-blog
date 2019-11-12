@@ -7,7 +7,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import { Helmet } from 'react-helmet';
 
-import AuthorCard from '../components/AuthorCard';
+// import AuthorCard from '../components/AuthorCard';
 import Footer from '../components/Footer';
 import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
@@ -247,7 +247,7 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
           <meta name="twitter:image" content={`${config.siteUrl}${post.frontmatter.image.childImageSharp.fluid.src}`} />
         )}
         <meta name="twitter:label1" content="Written by" />
-        <meta name="twitter:data1" content={post.frontmatter.author.id} />
+        {/* <meta name="twitter:data1" content={post.frontmatter.author.id} /> */}
         <meta name="twitter:label2" content="Filed under" />
         {post.frontmatter.tags && <meta name="twitter:data2" content={post.frontmatter.tags[0]} />}
         {config.twitter && <meta name="twitter:site" content={`@${config.twitter.split('https://twitter.com/')[1]}`} />}
@@ -297,7 +297,7 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
               <PostContent htmlAst={post.htmlAst} />
 
               {/* The big email subscribe modal content */}
-              {config.showSubscribe && <Subscribe title={config.title} />}
+              {/* {config.showSubscribe && <Subscribe title={config.title} />} */}
 
               {/* <PostFullFooter>
                 <AuthorCard author={post.frontmatter.author} />
@@ -351,19 +351,6 @@ export const query = graphql`
           childImageSharp {
             fluid(maxWidth: 3720) {
               ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        author {
-          id
-          bio
-          avatar {
-            children {
-              ... on ImageSharp {
-                fixed(quality: 90) {
-                  ...GatsbyImageSharpFixed
-                }
-              }
             }
           }
         }

@@ -1,9 +1,10 @@
 ---
 layout: post
 title: Using React Context (Now With Hooks)
+date: 2019-11-01T01:00:00.000Z
 spoiler: Real-world examples with Context
-author: Ghost
-date: 2017-11-01T07:03:47.149Z
+image: img/testimg-cover.jpg
+draft: false
 tags:
   - React
 ---
