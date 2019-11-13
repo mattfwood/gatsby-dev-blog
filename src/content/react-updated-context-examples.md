@@ -76,7 +76,7 @@ So if we had a login page where we were getting information about the current us
 
 To do that, we use the [useContext](https://reactjs.org/docs/hooks-reference.html#usecontext) hook and pass it our `UserContext`.
 
-```jsx
+```jsx{3-4,11}
 import { UserContext } from './UserContext';
 const LoginPage = () => {
   const context = useContext(UserContext);

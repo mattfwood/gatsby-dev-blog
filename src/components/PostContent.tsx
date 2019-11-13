@@ -462,6 +462,10 @@ export const PostFullContent = styled.section`
     white-space: normal;
   }
 
+  .language-text {
+    background-color: #c5a5c5;
+  }
+
   .token.attr-name {
     color: ${prismColors.keyword};
     font-style: italic;
@@ -536,8 +540,8 @@ export const PostFullContent = styled.section`
   .gatsby-highlight-code-line {
     background-color: ${prismColors.lineHighlight};
     display: block;
-    margin-right: -1.3125rem;
-    margin-left: -1.3125rem;
+    margin-right: -1.5rem;
+    margin-left: -1.5rem;
     padding-right: 1em;
     padding-left: 1.25em;
     border-left: 0.25em solid #ffa7c4;
