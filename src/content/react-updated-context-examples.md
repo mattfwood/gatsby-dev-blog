@@ -32,7 +32,7 @@ const UserContext = createContext();
 
 Next, we'll create a provider component we can use at the root of our app. We'll also give it some state to store the user object later, because our `UserProvider` is just another React component.
 
-```js
+```jsx
 function UserProvider({ children }) {
   const [user, setUser] = useState(null);
 
@@ -60,7 +60,7 @@ Here we set the value on the provider by passing it the `value` prop and giving 
 
 Now in the root of our app (usually something like `App.js` or `index.js`), we can add this provider:
 
-```js
+```jsx
 import { UserProvider } from './UserContext';
 
 const App = () => {
@@ -76,7 +76,7 @@ So if we had a login page where we were getting information about the current us
 
 To do that, we use the [useContext](https://reactjs.org/docs/hooks-reference.html#usecontext) hook and pass it our `UserContext`.
 
-```js
+```jsx
 import { UserContext } from './UserContext';
 const LoginPage = () => {
   const context = useContext(UserContext);
@@ -96,7 +96,7 @@ const LoginPage = () => {
 
 So now, if we had a navigation component that displayed the current user's name, we could do this:
 
-```js
+```jsx
 const NavBar = () => {
   const context = useContext(UserContext);
   const { user } = context;

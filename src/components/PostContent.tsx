@@ -5,6 +5,23 @@ import RehypeReact from 'rehype-react';
 
 import { colors } from '../styles/colors';
 
+const prismColors = {
+  char: '#D8DEE9',
+  comment: '#B2B2B2',
+  keyword: '#c5a5c5',
+  lineHighlight: '#353b45', // colors.dark + extra lightness
+  primitive: '#5a9bcf',
+  string: '#8dc891',
+  variable: '#d7deea',
+  boolean: '#ff8b50',
+  punctuation: '#88C6BE',
+  tag: '#fc929e',
+  function: '#79b6f2',
+  className: '#FAC863',
+  method: '#6699CC',
+  operator: '#fc929e',
+};
+
 export const PostFullContent = styled.section`
   position: relative;
   margin: 0 auto;
@@ -446,65 +463,70 @@ export const PostFullContent = styled.section`
   }
 
   .token.attr-name {
-    color: rgb(173, 219, 103);
+    color: ${prismColors.keyword};
     font-style: italic;
   }
 
   .token.comment {
-    color: rgb(128, 147, 147);
+    color: ${prismColors.comment};
   }
 
-  .token.string,
-  .token.url {
-    color: rgb(173, 219, 103);
+  .token.string {
+    color: ${prismColors.string};
   }
 
   .token.variable {
-    color: rgb(214, 222, 235);
+    color: ${prismColors.variable};
   }
 
   .token.number {
-    color: rgb(247, 140, 108);
+    color: ${prismColors.primitive};
   }
 
   .token.builtin,
   .token.char,
-  .token.constant,
-  .token.function {
-    color: rgb(130, 170, 255);
+  .token.selector,
+  .token.inserted {
+    color: ${prismColors.char};
   }
 
   .token.punctuation {
-    color: rgb(199, 146, 234);
+    color: ${prismColors.punctuation};
   }
 
-  .token.selector,
   .token.doctype {
-    color: rgb(199, 146, 234);
+    color: ${prismColors.comment}
     font-style: 'italic';
   }
 
-  .token.class-name {
-    color: rgb(255, 203, 139);
+  .token.function {
+    color: ${prismColors.function}
   }
 
-  .token.tag,
+  .token.class-name {
+    color: ${prismColors.className};
+  }
+
   .token.operator,
   .token.keyword {
-    color: #ffa7c4;
+    color: ${prismColors.keyword};
+  }
+
+  .token.tag {
+    color: ${prismColors.tag};
   }
 
   .token.boolean {
-    color: rgb(255, 88, 116);
+    color: ${prismColors.boolean};
   }
 
   .token.property {
-    color: rgb(128, 203, 196);
+    color: ${prismColors.primitive};
   }
 
-  .token.namespace {
+  /* .token.namespace {
     color: rgb(178, 204, 214);
-  }
+  } */
 
   pre[data-line] {
     padding: 1em 0 1em 3em;
@@ -512,7 +534,7 @@ export const PostFullContent = styled.section`
   }
 
   .gatsby-highlight-code-line {
-    background-color: hsla(207, 95%, 15%, 1);
+    background-color: ${prismColors.lineHighlight};
     display: block;
     margin-right: -1.3125rem;
     margin-left: -1.3125rem;
@@ -526,9 +548,23 @@ export const PostFullContent = styled.section`
     margin-left: -1.3125rem;
     margin-right: -1.3125rem;
     border-radius: 10px;
-    background: #011627;
+    background: rgb(40, 44, 52);
     -webkit-overflow-scrolling: touch;
     overflow: auto;
+  }
+
+  .token.selector,
+  .token.char,
+  .token.builtin,
+  .token.inserted {
+    color: ${prismColors.char};
+  }
+
+  .token.operator,
+  .token.entity,
+  .token.url,
+  .token.variable {
+    color: ${prismColors.variable};
   }
 
   @media (max-width: 672px) {
