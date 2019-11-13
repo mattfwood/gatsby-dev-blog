@@ -1,4 +1,4 @@
-# Sanity Check
+# Sanity Check [(Link)](https://blog.matthewfwood.com/)
 
 Personal blog forked from [Gatsby blog starter](https://github.com/scttcper/gatsby-casper).
 

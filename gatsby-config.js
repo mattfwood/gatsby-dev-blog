@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: 'Sanity Check',
     description: 'Personal blog by Matt Wood',
-    siteUrl: 'https://gatsby-casper.netlify.com', // full path to blog - no ending slash
+    siteUrl: 'https://blog.matthewfwood.com/', // full path to blog - no ending slash
   },
   mapping: {
     'MarkdownRemark.frontmatter.author': 'AuthorYaml',
@@ -47,7 +47,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: 'https://gatsby-casper.netlify.com',
+        siteUrl: 'https://blog.matthewfwood.com/',
       },
     },
     'gatsby-plugin-emotion',

@@ -20,6 +20,7 @@ export interface WebsiteConfig {
    * full url, no username
    */
   twitter?: string;
+  github?: string;
   /**
    * hide or show all email subscribe boxes
    */
@@ -54,7 +55,8 @@ const config: WebsiteConfig = {
   coverImage: 'img/blog-cover.jpg',
   logo: 'img/ghost-logo.png',
   lang: 'en',
-  siteUrl: 'https://gatsby-casper.netlify.com',
+  siteUrl: 'https://blog.matthewfwood.com/',
+  github: 'https://github.com/mattfwood',
   // facebook: 'https://www.facebook.com/ghost',
   // twitter: 'https://twitter.com/tryghost',
   showSubscribe: false,
