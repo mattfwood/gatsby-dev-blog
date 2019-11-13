@@ -138,7 +138,7 @@ const SubscribeOverlayTitle = styled.h1`
 const SubscribeOverlayDescription = styled.p`
   margin: 0 auto 50px;
   max-width: 650px;
-  font-family: Georgia, serif;
+  /* font-family: Georgia, serif; */
   font-size: 3rem;
   line-height: 1.3em;
   font-weight: 300;

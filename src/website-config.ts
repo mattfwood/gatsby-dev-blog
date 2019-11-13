@@ -50,7 +50,7 @@ export interface WebsiteConfig {
 
 const config: WebsiteConfig = {
   title: 'Sanity Check',
-  description: 'Personal blog for software development, hardware tinkering and learning to outsmart myself.',
+  description: '"This will save time in the long run"',
   coverImage: 'img/blog-cover.jpg',
   logo: 'img/ghost-logo.png',
   lang: 'en',
