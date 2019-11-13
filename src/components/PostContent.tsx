@@ -25,7 +25,7 @@ const prismColors = {
 export const PostFullContent = styled.section`
   position: relative;
   margin: 0 auto;
-  padding: 70px 100px 0;
+  padding: 70px 40px 0;
   min-height: 230px;
   /* font-family: Georgia, serif; */
   font-size: 2.2rem;
