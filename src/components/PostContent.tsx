@@ -549,8 +549,8 @@ export const PostFullContent = styled.section`
 
   .gatsby-highlight {
     margin-bottom: 1.75rem;
-    margin-left: -1.3125rem;
-    margin-right: -1.3125rem;
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
     border-radius: 10px;
     background: rgb(40, 44, 52);
     -webkit-overflow-scrolling: touch;
