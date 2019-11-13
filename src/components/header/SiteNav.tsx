@@ -91,10 +91,7 @@ function SiteNav(props: SiteNavProps) {
   const { isHome = false } = props;
   const data = useStaticQuery(TAG_QUERY);
 
-  console.log({ data });
-
   const tags = data.allTagYaml.edges.map((edge: any) => edge.node.id);
-  console.log({ tags });
 
   const subscribeRef = useRef(null);
 
