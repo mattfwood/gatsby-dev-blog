@@ -188,6 +188,7 @@ export interface PageContext {
         fluid: any;
       };
     };
+    spoiler?: string;
     title: string;
     date: string;
     draft?: boolean;

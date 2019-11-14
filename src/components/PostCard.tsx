@@ -80,6 +80,7 @@ const PostCardTitle = styled.h2`
 
 const PostCardExcerpt = styled.section`
   /* font-family: Georgia, serif; */
+  font-size: 16px;
 `;
 
 const PostCardMeta = styled.footer`
@@ -105,6 +106,7 @@ export interface PostCardProps {
 }
 
 const PostCard: React.FC<PostCardProps> = ({ post }) => {
+  console.log({ post });
   return (
     <article
       className={`post-card ${post.frontmatter.image ? '' : 'no-image'}`}
@@ -132,11 +134,13 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
             <PostCardTitle>{post.frontmatter.title}</PostCardTitle>
           </header>
           <PostCardExcerpt>
-            <p>{post.excerpt}</p>
+            <p>{post.frontmatter.spoiler || post.excerpt}</p>
           </PostCardExcerpt>
         </Link>
         <PostCardMeta className="post-card-meta">
-          <div />
+          <div>
+            {post.frontmatter.date}
+          </div>
           <ReadingTime>{post.timeToRead} min read</ReadingTime>
         </PostCardMeta>
       </PostCardContent>

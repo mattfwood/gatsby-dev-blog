@@ -2,7 +2,7 @@
 layout: post
 title: 3D Modeling With Code
 date: '2019-11-13'
-spoiler: 3D Modeling
+spoiler: Printing in 3D For The UI-challenged
 draft: true
 tags:
   - Programming

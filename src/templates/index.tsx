@@ -222,9 +222,10 @@ export const pageQuery = graphql`
           timeToRead
           frontmatter {
             title
-            date
+            date(formatString: "MMMM DD, YYYY")
             tags
             draft
+            spoiler
             image {
               childImageSharp {
                 fluid(maxWidth: 3720) {
