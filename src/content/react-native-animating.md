@@ -1,7 +1,7 @@
 ---
 layout: post
 title: React Native Animations Through Example
-date: 2019-01-30T01:00:00.000Z
+date: '2019-01-30'
 spoiler: Learning Mobile Animations By Imitation
 draft: true
 tags:

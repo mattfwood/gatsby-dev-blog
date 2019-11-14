@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Learning to Code Last
-date: 2018-10-16T01:00:00.000Z
+date: '2018-10-16'
 spoiler: The obvious lesson of thinking before doing
 draft: false
 tags:

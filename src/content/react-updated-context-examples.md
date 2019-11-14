@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Using React Context (Now With Hooks)
-date: 2019-11-01T01:00:00.000Z
+date: '2019-11-01'
 spoiler: Real-world examples with Context
 draft: false
 tags:

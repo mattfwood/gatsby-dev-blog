@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Steal (CSS Styles) Like An Artist
-date: 2018-10-08T01:00:00.000Z
+date: '2018-10-08'
 spoiler: Taking Notes From Sites That Know Better
 draft: false
 tags:

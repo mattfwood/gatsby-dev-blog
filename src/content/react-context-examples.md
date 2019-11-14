@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Practical Examples for React Context
-date: 2018-10-16T01:00:00.000Z
+date: '2018-10-16'
 spoiler: Real-world examples, with Context
 draft: false
 tags:
