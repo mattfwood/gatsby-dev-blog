@@ -324,6 +324,11 @@ export const PostFullContent = styled.section`
     }
   }
 
+  /* h1, h2, h3 {
+    margin-top: 50px;
+    margin-bottom: 15px;
+  } */
+
   /* Tables */
   table {
     display: inline-block;

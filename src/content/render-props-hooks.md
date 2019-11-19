@@ -3,7 +3,6 @@ layout: post
 title: A Farewell To Render Props
 date: '2019-01-29'
 spoiler: Welcoming Our New Hook Overlords
-image: img/computer.jpg
 draft: true
 tags:
   - React
