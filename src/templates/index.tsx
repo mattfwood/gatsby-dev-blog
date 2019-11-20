@@ -91,7 +91,6 @@ export interface IndexProps {
 }
 
 const IndexPage: React.FC<IndexProps> = props => {
-  console.log(props);
   const width = props.data.header.childImageSharp.fluid.sizes.split(', ')[1].split('px')[0];
   const height = String(Number(width) / props.data.header.childImageSharp.fluid.aspectRatio);
 
