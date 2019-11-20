@@ -92,7 +92,7 @@ const PostCardMeta = styled.footer`
 
 const ReadingTime = styled.span`
   flex-shrink: 0;
-  margin-left: 20px;
+  /* margin-left: 20px; */
   color: ${colors.midgrey};
   font-size: 1.2rem;
   line-height: 33px;
@@ -138,9 +138,9 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
           </PostCardExcerpt>
         </Link>
         <PostCardMeta className="post-card-meta">
-          <div>
+          <ReadingTime>
             {post.frontmatter.date}
-          </div>
+          </ReadingTime>
           <ReadingTime>{post.timeToRead} min read</ReadingTime>
         </PostCardMeta>
       </PostCardContent>

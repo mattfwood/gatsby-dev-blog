@@ -2,7 +2,7 @@
 layout: post
 title: 3D Modeling With Code
 date: '2019-11-13'
-spoiler: Printing in 3D For The UI-challenged
+spoiler: Making 3D Print Models For The UI-challenged
 image: img/text_example.png
 draft: false
 tags:

@@ -3,7 +3,7 @@ layout: post
 title: Learning to Code Last
 date: '2018-10-16'
 spoiler: The obvious lesson of thinking before doing
-draft: false
+draft: true
 tags:
   - Programming
 ---
@@ -20,4 +20,4 @@ Before I let myself write a single line of code, I wrote out the problems I was 
 
 Even though I'm terrible at creating designs, I found the wireframe was already revealing several issues I would've overlooked if I'd jumped right into coding. I saw that there wasn't a clear hierarchy separating things like a "task" from a "project", and that it would be confusing to a new user.
 
-This was the kind of UI problem that gets easily overlooked once you've started to dive into a codebase and start building things out.
+This was the kind of UI problem that gets easily overlooked once you dive into a codebase and start building things out.
