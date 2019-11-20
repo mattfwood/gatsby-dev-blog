@@ -4,6 +4,7 @@ import SiteNav from '../components/header/SiteNav';
 import { SiteHeader, outer, inner, SiteMain } from '../styles/shared';
 import * as React from 'react';
 import { css } from '@emotion/core';
+import styled from '@emotion/styled';
 
 import { PostFullHeader, PostFullTitle, NoImage, PostFull } from '../templates/post';
 import { PostFullContent } from '../components/PostContent';
@@ -15,6 +16,12 @@ const PageTemplate = css`
     background: #fff;
     padding-bottom: 4vw;
   }
+`;
+
+const ImageSubtitle = styled.div`
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 80%;
 `;
 
 const About: React.FC = () => (
@@ -35,6 +42,10 @@ const About: React.FC = () => (
           </PostFullHeader>
 
           <PostFullContent className="post-full-content">
+            <img src="https://imgs.xkcd.com/comics/the_general_problem.png" alt="XKCD Comic 'The General Problem'" style={{ marginBottom: 0 }} />
+            <ImageSubtitle>
+              <a href="https://xkcd.com/974/">Courtesy of XKCD</a>
+            </ImageSubtitle>
             <div className="post-content">
               <p>
                 My name's Matt Wood, I'm a self-taught, full-stack developer from Dallas, Texas. I specialize in front-end engineering, specifically with React and creating Javascript tools. I've also written a fair amount of Python for Raspberry Pi projects.
