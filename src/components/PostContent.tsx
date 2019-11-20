@@ -28,7 +28,7 @@ export const PostFullContent = styled.section`
   padding: 70px 40px 0;
   min-height: 230px;
   /* font-family: Georgia, serif; */
-  font-size: 2.2rem;
+  font-size: 2.0rem;
   line-height: 1.6em;
   background: #fff;
 
@@ -96,6 +96,7 @@ export const PostFullContent = styled.section`
     color: #000;
     word-break: break-word;
     box-shadow: ${colors.blue} 0 -1px 0 inset;
+    transition: all 120ms ease;
   }
 
   a:hover {
@@ -170,6 +171,10 @@ export const PostFullContent = styled.section`
 
   blockquote p:last-child {
     margin-bottom: 0;
+  }
+
+  p {
+    margin-bottom: 1em;
   }
 
   code {
@@ -247,7 +252,7 @@ export const PostFullContent = styled.section`
   }
 
   h1 {
-    margin: 0.5em 0 0.2em 0;
+    margin: 0.5em 0 0.4em 0;
     font-size: 4.6rem;
     font-weight: 700;
   }
@@ -418,6 +423,7 @@ export const PostFullContent = styled.section`
     word-wrap: normal;
     line-height: 1.5;
     margin-bottom: 0;
+    font-size: 16px;
 
     -moz-tab-size: 4;
     -o-tab-size: 4;
@@ -465,10 +471,6 @@ export const PostFullContent = styled.section`
     color: var(--inlineCode-text);
     padding: 0.15em 0.2em 0.05em;
     white-space: normal;
-  }
-
-  .language-text {
-    background-color: #c5a5c5;
   }
 
   .token.attr-name {
@@ -585,6 +587,10 @@ export const PostFullContent = styled.section`
   .gatsby-highlight pre[class*='language-'] {
     float: left;
     min-width: 100%;
+  }
+
+  code.language-text {
+    background-color: #79b6f2;
   }
   /* End Syntax Highlighting */
 `;
