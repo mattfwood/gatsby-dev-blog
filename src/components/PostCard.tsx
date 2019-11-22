@@ -20,13 +20,15 @@ const PostCardStyles = css`
   background: #fff center center;
   background-size: cover;
   border-radius: 5px;
-  box-shadow: rgba(39, 44, 49, 0.06) 8px 14px 38px, rgba(39, 44, 49, 0.03) 1px 3px 8px;
+  /* box-shadow: rgba(39, 44, 49, 0.06) 8px 14px 38px, rgba(39, 44, 49, 0.03) 1px 3px 8px; */
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.06);
   transition: all 0.5s ease;
 
   :hover {
-    box-shadow: rgba(39, 44, 49, 0.07) 8px 28px 50px, rgba(39, 44, 49, 0.04) 1px 6px 12px;
+    /* box-shadow: rgba(39, 44, 49, 0.07) 8px 28px 50px, rgba(39, 44, 49, 0.04) 1px 6px 12px; */
     transition: all 0.4s ease;
-    transform: translate3D(0, -1px, 0) scale(1.02);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.06);
+    /* transform: translate3D(0, -1px, 0) scale(1.02); */
   }
 `;
 
@@ -54,8 +56,9 @@ const PostCardContent = styled.div`
 const PostCardContentLink = css`
   position: relative;
   flex-grow: 1;
-  display: block;
-  padding: 25px 25px 0;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
   color: ${colors.darkgrey};
 
   :hover {
@@ -87,7 +90,7 @@ const PostCardMeta = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 0 25px 25px;
+  margin-top: auto;
 `;
 
 const ReadingTime = styled.span`
@@ -135,13 +138,13 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
           <PostCardExcerpt>
             <p>{post.frontmatter.spoiler || post.excerpt}</p>
           </PostCardExcerpt>
+          <PostCardMeta className="post-card-meta">
+            <ReadingTime>
+              {post.frontmatter.date}
+            </ReadingTime>
+            <ReadingTime>{post.timeToRead} min read</ReadingTime>
+          </PostCardMeta>
         </Link>
-        <PostCardMeta className="post-card-meta">
-          <ReadingTime>
-            {post.frontmatter.date}
-          </ReadingTime>
-          <ReadingTime>{post.timeToRead} min read</ReadingTime>
-        </PostCardMeta>
       </PostCardContent>
     </article>
   );
