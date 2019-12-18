@@ -3,7 +3,7 @@ layout: post
 title: How to Call React Code from Outside React
 spoiler: Using Custom Events to Connect Your Javscript
 date: '2019-12-18'
-draft: false
+draft: true
 tags:
   - Programming
   - React
