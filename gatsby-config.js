@@ -45,6 +45,7 @@ module.exports = {
               quality: 90,
             },
           },
+          'gatsby-remark-embedder'
         ],
       },
     },
