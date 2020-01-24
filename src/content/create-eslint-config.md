@@ -1,9 +1,10 @@
 ---
 layout: post
 title: Creating a Sane ESLint Config
-spoiler:
+spoiler: Stop wasting time fixing those semicolons and spaces
 date: '2020-01-24'
-draft: true
+image: img/linting-image.png
+draft: false
 tags:
   - Programming
   - React
