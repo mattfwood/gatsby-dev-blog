@@ -110,7 +110,37 @@ module.exports = {
 
 # 4. Publishing
 
-https://docs.npmjs.com/creating-and-publishing-unscoped-public-packages#publishing-unscoped-public-packages
+To publish this config, you'll need to update a few things in your `package.json`:
+
+```js
+{
+  // must start with "eslint-config" for other people to include it
+  "name": "eslint-config-my-cool-config",
+  // this must be increased every time you publish
+  "version": "1.0.0",
+  // this tells node where to find the main module when it's installed
+  "main": "index.js",
+}
+```
+
+Then, make sure you have an account with [NPM](https://www.npmjs.com) and follow their guide to [publish a package](https://docs.npmjs.com/creating-and-publishing-unscoped-public-packages#publishing-unscoped-public-packages).
+
+Once it's successful, you should be able to go to any Javascript project using NPM and run:
+
+```bash
+yarn add eslint-config-my-cool-config
+# or
+npm install --save eslint-config-my-cool-config
+```
+
+And then extend your own config by making a `.eslintrc` file in the root of your project:
+
+```js
+{
+  // don't include the `eslint-config-` part when extending
+  "extends": ["my-cool-config"]
+}
+```
 
 # 5. Super Charge Your Text Editor
 
@@ -122,10 +152,34 @@ Install the [VSCode ESLint extension](https://marketplace.visualstudio.com/items
 
 At the end of the settings JSON, add this:
 
-```
+```js
 "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
 },
 ```
 
-Now when you save a file it should automatically run eslint fixes, which also include our Prettier formatting.
+Now when you save a file it should automatically run eslint fixes, which also include our Prettier formatting and save you hours of headache in the future.
+
+Finally, don't forget that if you end up changing your mind about any rules, you can always override them in your `.eslintrc` project's config file:
+
+```js
+{
+  // don't include the `eslint-config-` part when extending
+  "extends": ["my-cool-config"],
+  "rules": {
+    // 0 turns the rule off, 1 emits a console warning and 2 throws an error
+    "overly-opinionated-rule": 0
+  }
+}
+```
+
+Or change them in your custom config package (just remember you'll have to publish it afterward):
+
+```js
+{
+  "extends": ["base-config"],
+  "rules": {
+    "overly-opinionated-rule": 0
+  }
+}
+```
