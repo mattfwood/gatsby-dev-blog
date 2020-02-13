@@ -3,7 +3,7 @@ import { css } from '@emotion/core';
 export const HomeNavRaise = css`
   @media (min-width: 900px) {
     position: relative;
-    top: -70px;
+    top: -50px;
   }
 `;
 export const SiteNavStyles = css`

@@ -48,7 +48,7 @@ export const PostFeed = css`
 
 export const PostFeedRaise = css`
   @media (min-width: 900px) {
-    margin-top: -70px;
+    margin-top: -50px;
     padding-top: 0;
   }
 `;
@@ -88,7 +88,8 @@ export const SiteHeaderContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10vw 4vw;
+  /* padding: 6vw 4vw; */
+  padding: 5vw 3vw 7vw;
   min-height: 200px;
   max-height: 450px;
   text-align: center;
