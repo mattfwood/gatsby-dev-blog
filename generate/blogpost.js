@@ -8,7 +8,7 @@ const opn = require('opn');
 const axios = require('axios');
 const slugify = require('@sindresorhus/slugify');
 const inquirer = require('inquirer');
-const prettier = require('prettier');
+// const prettier = require('prettier');
 const tinify = require('tinify');
 const ora = require('ora');
 require('dotenv').config({
@@ -32,7 +32,7 @@ const listify = a =>
     null;
 
 async function generateBlogPost() {
-  const { title, description, categories, keywords } = await inquirer.prompt([
+  const { title, description, categories } = await inquirer.prompt([
     {
       type: 'input',
       name: 'title',
@@ -48,35 +48,53 @@ async function generateBlogPost() {
       name: 'categories',
       message: 'Categories (comma separated)',
     },
-    {
-      type: 'input',
-      name: 'keywords',
-      message: 'Keywords (comma separated)',
-    },
+    // {
+    //   type: 'input',
+    //   name: 'keywords',
+    //   message: 'Keywords (comma separated)',
+    // },
   ]);
   const slug = slugify(title);
-  const destination = fromRoot('content/blog', slug);
+  const destination = fromRoot('src/content', slug);
   mkdirp.sync(destination);
 
-  const bannerCredit = await getBannerPhoto(title, destination);
+  // const bannerCredit = await getBannerPhoto(title, destination);
 
   const yaml = jsToYaml.stringify(
     removeEmpty({
       slug,
       title,
       date: formatDate(new Date()),
-      author: 'Kent C. Dodds',
+      // author: 'Kent C. Dodds',
       description: `_${description}_`,
       categories: listify(categories),
-      keywords: listify(keywords),
-      banner: './images/banner.jpg',
-      bannerCredit,
+      // keywords: listify(keywords),
+      // banner: './images/banner.jpg',
+      // bannerCredit,
     }),
   );
-  const markdown = prettier.format(`---\n${yaml}\n---\n`, {
-    ...require('../prettier.config'),
-    parser: 'mdx',
-  });
+  const markdown = (`---\n${yaml}\n---\n`);
+  // const markdown = prettier.format(`---\n${yaml}\n---\n`, {
+  //   ...{
+  //     arrowParens: 'avoid',
+  //     bracketSpacing: false,
+  //     endOfLine: 'lf',
+  //     htmlWhitespaceSensitivity: 'css',
+  //     insertPragma: false,
+  //     jsxBracketSameLine: false,
+  //     jsxSingleQuote: false,
+  //     printWidth: 80,
+  //     proseWrap: 'always',
+  //     quoteProps: 'as-needed',
+  //     requirePragma: false,
+  //     semi: false,
+  //     singleQuote: true,
+  //     tabWidth: 2,
+  //     trailingComma: 'all',
+  //     useTabs: false,
+  //   },
+  //   parser: 'mdx',
+  // });
   fs.writeFileSync(path.join(destination, 'index.mdx'), markdown);
 
   console.log(`${destination.replace(process.cwd(), '')} is all ready for you`);
