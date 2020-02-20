@@ -1,23 +1,23 @@
 const path = require('path');
 const fs = require('fs');
-const util = require('util');
+// const util = require('util');
 const jsToYaml = require('json-to-pretty-yaml');
-const mkdirp = require('mkdirp');
-const fakeUa = require('fake-useragent');
-const opn = require('opn');
-const axios = require('axios');
+// const mkdirp = require('mkdirp');
+// const fakeUa = require('fake-useragent');
+// const opn = require('opn');
+// const axios = require('axios');
 const slugify = require('@sindresorhus/slugify');
 const inquirer = require('inquirer');
 // const prettier = require('prettier');
-const tinify = require('tinify');
-const ora = require('ora');
+// const tinify = require('tinify');
+// const ora = require('ora');
 require('dotenv').config({
   path: path.join(__dirname, '.env'),
 });
 
 const fromRoot = (...p) => path.join(__dirname, '..', ...p);
 
-tinify.key = process.env.TINY_PNG_API_KEY;
+// tinify.key = process.env.TINY_PNG_API_KEY;
 
 const padLeft0 = n => n.toString().padStart(2, '0');
 const formatDate = d =>
@@ -32,7 +32,7 @@ const listify = a =>
     null;
 
 async function generateBlogPost() {
-  const { title, description, categories } = await inquirer.prompt([
+  const { title, spoiler, tags } = await inquirer.prompt([
     {
       type: 'input',
       name: 'title',
@@ -40,13 +40,13 @@ async function generateBlogPost() {
     },
     {
       type: 'input',
-      name: 'description',
+      name: 'spoiler',
       message: 'Description',
     },
     {
       type: 'input',
-      name: 'categories',
-      message: 'Categories (comma separated)',
+      name: 'tags',
+      message: 'Tags (comma separated)',
     },
     // {
     //   type: 'input',
@@ -55,8 +55,8 @@ async function generateBlogPost() {
     // },
   ]);
   const slug = slugify(title);
-  const destination = fromRoot('src/content', slug);
-  mkdirp.sync(destination);
+  const destination = fromRoot('src/content');
+  // mkdirp.sync(destination);
 
   // const bannerCredit = await getBannerPhoto(title, destination);
 
@@ -65,89 +65,69 @@ async function generateBlogPost() {
       slug,
       title,
       date: formatDate(new Date()),
-      // author: 'Kent C. Dodds',
-      description: `_${description}_`,
-      categories: listify(categories),
+      draft: true,
+      spoiler,
+      tags: listify(tags),
       // keywords: listify(keywords),
       // banner: './images/banner.jpg',
       // bannerCredit,
     }),
   );
   const markdown = (`---\n${yaml}\n---\n`);
-  // const markdown = prettier.format(`---\n${yaml}\n---\n`, {
-  //   ...{
-  //     arrowParens: 'avoid',
-  //     bracketSpacing: false,
-  //     endOfLine: 'lf',
-  //     htmlWhitespaceSensitivity: 'css',
-  //     insertPragma: false,
-  //     jsxBracketSameLine: false,
-  //     jsxSingleQuote: false,
-  //     printWidth: 80,
-  //     proseWrap: 'always',
-  //     quoteProps: 'as-needed',
-  //     requirePragma: false,
-  //     semi: false,
-  //     singleQuote: true,
-  //     tabWidth: 2,
-  //     trailingComma: 'all',
-  //     useTabs: false,
-  //   },
-  //   parser: 'mdx',
-  // });
-  fs.writeFileSync(path.join(destination, 'index.mdx'), markdown);
+  const outputFile = path.join(destination, `${slug}.md`);
+  fs.writeFileSync(outputFile, markdown);
 
-  console.log(`${destination.replace(process.cwd(), '')} is all ready for you`);
+  console.log(`${outputFile.replace(process.cwd(), '')} is all ready for you`);
 }
 
-async function getBannerPhoto(title, destination) {
-  const imagesDestination = path.join(destination, 'images');
+// async function getBannerPhoto(title, destination) {
+//   const imagesDestination = path.join(destination, 'images');
 
-  await opn(`https://unsplash.com/search/photos/${encodeURIComponent(title)}`, {
-    wait: false,
-  });
+//   await opn(`https://unsplash.com/search/photos/${encodeURIComponent(title)}`, {
+//     wait: false,
+//   });
 
-  const { unsplashPhotoId } = await inquirer.prompt([
-    {
-      type: 'input',
-      name: 'unsplashPhotoId',
-      message: 'What\'s the Unsplash Photo ID for the banner for this post?',
-    },
-  ]);
-  mkdirp.sync(imagesDestination);
+//   const { unsplashPhotoId } = await inquirer.prompt([
+//     {
+//       type: 'input',
+//       name: 'unsplashPhotoId',
+//       message: 'What\'s the Unsplash Photo ID for the banner for this post?',
+//     },
+//   ]);
+//   mkdirp.sync(imagesDestination);
 
-  const source = tinify
-    .fromUrl(
-      `https://unsplash.com/photos/${unsplashPhotoId}/download?force=true`,
-    )
-    .resize({
-      method: 'scale',
-      width: 2070,
-    });
+//   const source = tinify
+//     .fromUrl(
+//       `https://unsplash.com/photos/${unsplashPhotoId}/download?force=true`,
+//     )
+//     .resize({
+//       method: 'scale',
+//       width: 2070,
+//     });
 
-  const spinner = ora('compressing the image with tinypng.com').start();
-  await util
-    .promisify(source.toFile)
-    .call(source, path.join(imagesDestination, 'banner.jpg'));
-  spinner.text = 'compressed the image with tinypng.com';
-  spinner.stop();
+//   const spinner = ora('compressing the image with tinypng.com').start();
+//   await util
+//     .promisify(source.toFile)
+//     .call(source, path.join(imagesDestination, 'banner.jpg'));
+//   spinner.text = 'compressed the image with tinypng.com';
+//   spinner.stop();
 
-  const bannerCredit = await getPhotoCredit(unsplashPhotoId);
-  return bannerCredit;
-}
+//   const bannerCredit = await getPhotoCredit(unsplashPhotoId);
+//   return bannerCredit;
+// }
 
-async function getPhotoCredit(unsplashPhotoId) {
-  const response = await axios({
-    url: `https://unsplash.com/photos/${unsplashPhotoId}`,
-    headers: { 'User-Agent': fakeUa() },
-  });
-  const {
-    groups: { name },
-  } = response.data.match(/Photo by (?<name>.*?) on Unsplash/) || {
-    groups: { name: 'Unknown' },
-  };
-  return `Photo by [${name}](https://unsplash.com/photos/${unsplashPhotoId})`;
-}
+// async function getPhotoCredit(unsplashPhotoId) {
+//   const response = await axios({
+//     url: `https://unsplash.com/photos/${unsplashPhotoId}`,
+//     headers: { 'User-Agent': fakeUa() },
+//   });
+//   const {
+//     groups: { name },
+//   } = response.data.match(/Photo by (?<name>.*?) on Unsplash/) || {
+//     groups: { name: 'Unknown' },
+//   };
+//   return `Photo by [${name}](https://unsplash.com/photos/${unsplashPhotoId})`;
+// }
 
 function removeEmpty(obj) {
   return Object.entries(obj).reduce((o, [key, value]) => {
