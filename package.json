@@ -12,7 +12,9 @@
     "lint": "eslint src/**/**/*.tsx",
     "lint:fix": "eslint --fix src/**/*/*.tsx",
     "start": "npm run dev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate:post": "node generate/blogpost.js",
+    "g:post": "yarn generate:post"
   },
   "dependencies": {
     "@emotion/core": "10.0.14",
@@ -59,6 +61,7 @@
     "rehype-react": "4.0.1"
   },
   "devDependencies": {
+    "@sindresorhus/slugify": "^0.11.0",
     "@types/classnames": "2.2.9",
     "@types/lodash": "4.14.136",
     "@types/node": "12.6.8",
@@ -67,7 +70,9 @@
     "@types/react-helmet": "5.0.8",
     "@typescript-eslint/eslint-plugin": "1.13.0",
     "@typescript-eslint/parser": "1.13.0",
+    "axios": "^0.19.2",
     "babel-plugin-styled-components": "1.10.6",
+    "dotenv": "^8.2.0",
     "eslint": "6.1.0",
     "eslint-config-xo-react": "0.20.0",
     "eslint-config-xo-space": "0.21.0",
@@ -75,7 +80,14 @@
     "eslint-plugin-import": "2.18.2",
     "eslint-plugin-react": "7.14.3",
     "eslint-plugin-react-hooks": "1.6.1",
+    "fake-useragent": "^1.0.1",
+    "inquirer": "^7.0.4",
+    "json-to-pretty-yaml": "^1.2.2",
+    "opn": "^6.0.0",
+    "ora": "^4.0.3",
+    "prettier": "^1.19.1",
     "rimraf": "2.6.3",
+    "tinify": "^1.6.0-beta.2",
     "typescript": "3.5.3",
     "typescript-styled-plugin": "^0.15.0"
   },
