@@ -2,6 +2,7 @@ import { lighten, setLightness, darken, setSaturation } from 'polished';
 import * as React from 'react';
 import styled from '@emotion/styled';
 import RehypeReact from 'rehype-react';
+import Markdown from 'react-markdown';
 
 import { colors } from '../styles/colors';
 
@@ -33,7 +34,7 @@ export const PostFullContent = styled.section`
   background: #fff;
 
   @media (max-width: 1170px) {
-    padding: 5vw 7vw 0;
+    padding: 50px 7vw 0;
   }
   @media (max-width: 800px) {
     font-size: 1.9rem;
@@ -608,11 +609,27 @@ const Ast = ({ ast, ...props }: any) => {
 
 export interface PostContentProps {
   htmlAst: any;
+  caption?: string;
 }
 
-const PostContent: React.FC<PostContentProps> = ({ htmlAst }) => {
+const Caption = styled.div`
+  /* margin-top: -55px; */
+  /* margin-top: -2rem; */
+  /* margin-bottom: 1.5rem; */
+  font-size: 12px;
+  text-align: center;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 100%;
+`;
+
+const PostContent: React.FC<PostContentProps> = ({ htmlAst, caption }) => {
   return (
     <PostFullContent className="post-full-content">
+      <Caption>
+        <Markdown>{caption}</Markdown>
+      </Caption>
       {/* TODO: this will apply the class when rehype-react is published https://github.com/rhysd/rehype-react/pull/11 */}
       <Ast className="post-content" ast={htmlAst} />
     </PostFullContent>

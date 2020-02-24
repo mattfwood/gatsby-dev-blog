@@ -6,6 +6,7 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import { Helmet } from 'react-helmet';
+import Markdown from 'react-markdown';
 
 // import AuthorCard from '../components/AuthorCard';
 import Footer from '../components/Footer';
@@ -191,6 +192,7 @@ export interface PageContext {
     spoiler?: string;
     title: string;
     date: string;
+    caption?: string;
     draft?: boolean;
     tags: string[];
     author: {
@@ -208,6 +210,7 @@ export interface PageContext {
 }
 
 const PageTemplate: React.FC<PageTemplateProps> = props => {
+  console.log({ props });
   const post = props.data.markdownRemark;
   let width = '';
   let height = '';
@@ -295,7 +298,8 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
                   />
                 </PostFullImage>
               )}
-              <PostContent htmlAst={post.htmlAst} />
+
+              <PostContent htmlAst={post.htmlAst} caption={post.frontmatter.caption} />
 
               {/* The big email subscribe modal content */}
               {/* {config.showSubscribe && <Subscribe title={config.title} />} */}
@@ -348,6 +352,7 @@ export const query = graphql`
         userDate: date(formatString: "D MMMM YYYY")
         date
         tags
+        caption
         image {
           childImageSharp {
             fluid(maxWidth: 3720) {

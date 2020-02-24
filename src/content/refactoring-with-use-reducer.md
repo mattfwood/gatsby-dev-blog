@@ -1,14 +1,16 @@
 ---
 layout: post
 title: Refactor Your Component's State with useReducer
-spoiler: Don't Fear the Reducer
+spoiler: Create Actions to Simplify State
 date: '2020-02-12'
-# image: img/linting-image.png
+image: img/reduce.jpg
+caption: 'Photo by [Markus Spiske](https://unsplash.com/@markusspiske?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText) on [Unsplash](https://unsplash.com)'
 draft: false
 tags:
-  - Programming
   - React
+  - Programming
 ---
+
 
 I'll start with a disclaimer: I am not the biggest fan of Redux.
 
