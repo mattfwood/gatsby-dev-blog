@@ -16,7 +16,7 @@ I think Redux has some great ideas, but it tends to overcomplicate things and cr
 
 It wasn't until I started using React's [`useReducer` hook](https://reactjs.org/docs/hooks-reference.html#usereducer) that I started to appreciate what a reducer does.
 
-For a long time I hadn't fully grasped what a "reducer" really was.
+As I started using it more, I even started to realize that I hadn't fully grasped what a "reducer" actually _was_.
 
 > A reducer is basically a function that takes in a series of actions and an `initialState`, and then "reduces" them to get the current state of the application.
 
@@ -52,11 +52,11 @@ const currentState = actions.reduce((state, action) => {
 // currentState would equal { user: null }
 ```
 
-Here, `currentState` would return `{ user: null }` because even though we signed in, the last action we took was signing out.
+Here, `currentState` would return `{ user: null }`, because even though we signed in, the last action we took was signing out.
 
 If you've used Redux or `useReducer` before, this will look similar even though there's no actual "reducer" in this code.
 
-The reason this is helpful for us in React is because we'll frequently have lots of pieces of state we need to track, and they'll often change in groups.
+The reason this is helpful in React is because we frequently have lots of pieces of state we need to track, and they'll often change in groups.
 
 So instead of using 4 or 5 `useState` calls, we can use a reducer to create _actions_ that describe our different state changes.
 
@@ -79,14 +79,14 @@ const LoginForm = () => {
       // send data to your API
       const response = await api.post('/login', { email, password })
 
-      // if it's successful, toggle the loading boolean and set the data in state
-      setIsLoading(false);
+      // if it's successful, set the data in state
       setData(response.data);
     } catch (error) {
       // if something goes wrong, they shouldn't get stuck in the loading state
-      setIsLoading(false);
       setErrorMessage(error.message);
     }
+
+    setIsLoading(false);
   }
 
   return (
